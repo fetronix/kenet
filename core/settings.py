@@ -16,9 +16,11 @@ INSTALLED_APPS = [
     'KenetAssets',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Added WhiteNoise
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -30,6 +32,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     'http://197.136.16.162:8000',
+# ]
 
 TEMPLATES = [
     {

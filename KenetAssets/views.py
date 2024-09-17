@@ -22,7 +22,7 @@ from .models import Consignment, Receiving, Asset
 from django.urls import reverse
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def add_consignment(request):
     serializer = ConsignmentSerializer(data=request.data)
     if serializer.is_valid():
@@ -38,14 +38,14 @@ def list_consignments(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])  # Only authenticated users can view Receiving instances
+# @permission_classes([IsAuthenticated])  # Only authenticated users can view Receiving instances
 def list_receivings(request):
     receivings = Receiving.objects.all()
     serializer = ReceivingSerializer(receivings, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])  # Only authenticated users can add Receiving instances
+# @permission_classes([IsAuthenticated])  # Only authenticated users can add Receiving instances
 def add_receiving(request):
     serializer = ReceivingSerializer(data=request.data)
     if serializer.is_valid():
@@ -54,14 +54,14 @@ def add_receiving(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])  # Only authenticated users can view Asset instances
+# @permission_classes([IsAuthenticated])  # Only authenticated users can view Asset instances
 def list_assets(request):
     assets = Asset.objects.all()
     serializer = AssetSerializer(assets, many=True)
     return Response(serializer.data)
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])  # Only authenticated users can add Asset instances
+# @permission_classes([IsAuthenticated])  # Only authenticated users can add Asset instances
 def add_asset(request):
     serializer = AssetSerializer(data=request.data)
     if serializer.is_valid():
