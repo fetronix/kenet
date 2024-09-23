@@ -118,3 +118,42 @@ class AddDispatch(generics.CreateAPIView):
     def perform_create(self, serializer):
         # Automatically set the user and approver from the request
         serializer.save(user=self.request.user)
+
+
+
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .models import Consignment
+from .serializers import ConsignmentCreateSerializer
+
+class AddConsignmentAPIView(generics.CreateAPIView):
+    queryset = Consignment.objects.all()
+    serializer_class = ConsignmentCreateSerializer
+    permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
+
+    def perform_create(self, serializer):
+        serializer.save(received_by=self.request.user)  # Automatically set the received_by field
+
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .models import Receiving
+from .serializers import ReceivingCreateSerializer
+
+class AddReceivingAPIView(generics.CreateAPIView):
+    queryset = Receiving.objects.all()
+    serializer_class = ReceivingCreateSerializer
+    permission_classes = [IsAuthenticated]  # Ensure that the user is authenticated
+
+    def perform_create(self, serializer):
+        # Automatically assign the current user as the one who received the item
+        serializer.save(received_by=self.request.user)
+
+from rest_framework import generics
+from .models import Asset
+from .serializers import AssetCreateSerializer
+from rest_framework.permissions import IsAuthenticated
+
+class AssetCreateView(generics.CreateAPIView):
+    queryset = Asset.objects.all()
+    serializer_class = AssetCreateSerializer
+    permission_classes = [IsAuthenticated]  # Ensures only authenticated users can add assets

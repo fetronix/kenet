@@ -1,30 +1,22 @@
 from django.urls import path
-from .views import (
-    list_consignments, 
-    add_consignment, 
-    list_receivings, 
-    add_receiving, 
-    list_assets, 
-    add_asset, 
-    ListDispatches,  # Use the new ListDispatches view
-    AddDispatch,     # Use the new AddDispatch view
-    RegisterAPIView, 
-    LoginAPIView
-)
+from .views import *
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     # Consignment URLs
     path('consignments/', list_consignments, name='list_consignments'),
-    path('api/consignments/', add_consignment, name='add_consignment'),
+    path('api/consignments/add/', AddConsignmentAPIView.as_view(), name='add_consignment'),
+    # path('api/consignments/', add_consignment, name='add_consignment'),
 
     # Receiving URLs
     path('receivings/', list_receivings, name='list_receivings'),
-    path('api/receivings/add/', add_receiving, name='add_receiving'),
+     path('api/receivings/add/', AddReceivingAPIView.as_view(), name='add_receiving'),
+    # path('api/receivings/add/', add_receiving, name='add_receiving'),
 
     # Asset URLs
     path('assets/', list_assets, name='list_assets'),
-    path('api/assets/add/', add_asset, name='add_asset'),
+    path('assets/create/', AssetCreateView.as_view(), name='asset-create'),
+    # path('api/assets/add/', add_asset, name='add_asset'),
 
      # Dispatch URLs
     path('dispatches/', ListDispatches.as_view(), name='list_dispatches'),  # Updated to use ListDispatches
