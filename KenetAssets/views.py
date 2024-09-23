@@ -157,3 +157,21 @@ class AssetCreateView(generics.CreateAPIView):
     queryset = Asset.objects.all()
     serializer_class = AssetCreateSerializer
     permission_classes = [IsAuthenticated]  # Ensures only authenticated users can add assets
+
+
+from rest_framework import viewsets
+from .models import Location
+from .serializers import LocationSerializer
+
+class LocationViewSet(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    
+    
+from rest_framework import viewsets
+from .models import Category
+from .serializers import CategorySerializer
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

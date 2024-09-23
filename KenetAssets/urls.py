@@ -1,6 +1,14 @@
-from django.urls import path
+from django.urls import path,include
 from .views import *
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.routers import DefaultRouter
+from .views import LocationViewSet, CategoryViewSet
+
+
+router = DefaultRouter()
+router.register(r'locations', LocationViewSet)
+router.register(r'categories', CategoryViewSet) 
+
 
 urlpatterns = [
     # Consignment URLs
@@ -27,4 +35,6 @@ urlpatterns = [
     path('register/', RegisterAPIView.as_view(), name='register'),
     path('login/', LoginAPIView.as_view(), name='login'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+    
+    path('api/', include(router.urls)), 
 ]

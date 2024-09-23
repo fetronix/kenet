@@ -146,3 +146,16 @@ class AssetCreateSerializer(serializers.ModelSerializer):
         validated_data['supplier'] = receiving.supplier
         
         return super().create(validated_data)
+
+
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = '__all__'  # You can specify specific fields if needed
+        
+        
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'  # You can specify specific fields if needed
