@@ -2,7 +2,7 @@ from django.urls import path,include
 from .views import *
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
-from .views import LocationViewSet, CategoryViewSet
+from .views import LocationViewSet, CategoryViewSet,LocationCreate
 
 
 router = DefaultRouter()
@@ -36,5 +36,8 @@ urlpatterns = [
     path('login/', LoginAPIView.as_view(), name='login'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     
+    
+    
     path('api/', include(router.urls)), 
+    path('api/locations/add', LocationCreate.as_view(), name='location-create'),
 ]

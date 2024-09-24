@@ -148,11 +148,12 @@ class AssetCreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+from .models import Location
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = '__all__'  # You can specify specific fields if needed
+        fields = ['id', 'name', 'slug']
         
         
 class CategorySerializer(serializers.ModelSerializer):
