@@ -159,4 +159,4 @@ class LocationSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'  # You can specify specific fields if needed
+        fields = ['id', 'name', 'slug']

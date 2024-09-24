@@ -40,4 +40,5 @@ urlpatterns = [
     
     path('api/', include(router.urls)), 
     path('api/locations/add', LocationCreate.as_view(), name='location-create'),
+    path('api/category/add', CategoryCreate.as_view(), name='category-create'),
 ]
